@@ -1,131 +1,125 @@
 // Copyright 2024 The Jumpstarter Authors
 
-
 syntax = "proto3";
+
+package jumpstarter;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 
-package jumpstarter;
-
 // A service where a exporter can connect to make itself available
 service ForExporter {
-    // Exporter registration
-    rpc Register(ExporterReport) returns (google.protobuf.Empty);
+  // Exporter registration
+  rpc Register(ExporterReport) returns (google.protobuf.Empty);
 
-    // Server <-> Exporter command streams
-    rpc ControlStream(stream ClientResponse) returns (stream ServerCommand);
-    // Exporter disconnection
-    rpc Bye(ExporterBye) returns (google.protobuf.Empty);
+  // Server <-> Exporter command streams
+  rpc ControlStream(stream ClientResponse) returns (stream ServerCommand);
+  // Exporter disconnection
+  rpc Bye(ExporterBye) returns (google.protobuf.Empty);
 
-    // Messages for streaming drivers (audio/video/serial/other)
-    rpc DataStream(stream DataChunk) returns (stream DataChunk);
+  // Messages for streaming drivers (audio/video/serial/other)
+  rpc DataStream(stream DataChunk) returns (stream DataChunk);
 
-    // Events from/to drivers
-    rpc EventStream(stream Event) returns (stream Event);
+  // Events from/to drivers
+  rpc EventStream(stream Event) returns (stream Event);
 }
-
 
 // A service a exporter can share locally to be used without a server
 // Channel/Call credentials are used to authenticate the client, and routing to the right exporter
 service ForClient {
-    // Exporter registration
-    rpc GetReport(google.protobuf.Empty) returns (ExporterReport);
+  // Exporter registration
+  rpc GetReport(google.protobuf.Empty) returns (ExporterReport);
 
-    // Server <-> Exporter command streams
-    rpc ControlStream(stream ServerCommand) returns (stream ClientResponse);
+  // Server <-> Exporter command streams
+  rpc ControlStream(stream ServerCommand) returns (stream ClientResponse);
 
-    // Messages for streaming drivers (audio/video/serial/other)
-    rpc DataStream(stream DataChunk) returns (stream DataChunk);
+  // Messages for streaming drivers (audio/video/serial/other)
+  rpc DataStream(stream DataChunk) returns (stream DataChunk);
 }
-
 
 // Server to Exporter requests ///////////////////////////////////////////////
 
-message ServerCommand{
-    oneof request_oneof {
-        Ping ping=1;
-        DriverCall driver_call=2;
-        Event event=3;
-    }
+message ServerCommand {
+  oneof request_oneof {
+    Ping ping = 1;
+    DriverCall driver_call = 2;
+    Event event = 3;
+  }
 }
 
 // Server to exporter ping request
 // NOTE: we can probably remove ping and rely on gRPC session keepalives
 message Ping {
-    string data=1;
-    uint64 seq=2;
+  string data = 1;
+  uint64 seq = 2;
 }
 
 // Server to client call into a driver
 message DriverCall {
-    string device_id=1;
-    string call_uuid=2;
-    string driver_method=3;
-    repeated google.protobuf.Value args=4;
+  string device_id = 1;
+  string call_uuid = 2;
+  string driver_method = 3;
+  repeated google.protobuf.Value args = 4;
 }
 
 // Exporter to Server messages ///////////////////////////////////////////////
 
 message ExporterBye {
-    string uuid=1;
-    string reason=2;
+  string uuid = 1;
+  string reason = 2;
 }
 
 // ExporterReport
 message ExporterReport {
-    string uuid=1;
-    string hostname=2;
-    string name=3;
-    map<string, string> labels=4;
-    repeated DeviceReport device_report=5;
+  string uuid = 1;
+  string hostname = 2;
+  string name = 3;
+  map<string, string> labels = 4;
+  repeated DeviceReport device_report = 5;
 }
 
 message DeviceReport {
-    string device_id=1;        // a unique id within the expoter
-    optional string parent_device_id=2; // optional, if device has a parent device
-    string device_name=3;
-    string driver_interface=4; // The driver interface class
+  string device_id = 1; // a unique id within the expoter
+  optional string parent_device_id = 2; // optional, if device has a parent device
+  string device_name = 3;
+  string driver_interface = 4; // The driver interface class
 }
 
-
 message ClientResponse {
-    oneof response_oneof {
-        Pong pong=1;
-        ExporterReport exporter_report=2;
-        DriverResponse driver_response=3;
-        Event event=4;
-        Log log=5;
-    }
+  oneof response_oneof {
+    Pong pong = 1;
+    ExporterReport exporter_report = 2;
+    DriverResponse driver_response = 3;
+    Event event = 4;
+    Log log = 5;
+  }
 }
 
 message Pong {
-    string data=1;
-    uint64 seq=2;
+  string data = 1;
+  uint64 seq = 2;
 }
 
 message DriverResponse {
-    string call_uuid = 1;
-    string json_result = 2;
+  string call_uuid = 1;
+  string json_result = 2;
 }
-
 
 // Data events from/to drivers ////////////////////////////////////////////
 
 message Event {
-    string device_id=1;
-    optional string handle=2;
-    string type=3;
-    string data=4;
+  string device_id = 1;
+  optional string handle = 2;
+  string type = 3;
+  string data = 4;
 }
 
 message Log {
-    string device_id=1;
-    optional string handle=2;
-    string level=3;
-    string message=4;
+  string device_id = 1;
+  optional string handle = 2;
+  string level = 3;
+  string message = 4;
 }
-
 
 // Data streaming from/to drivers ////////////////////////////////////////////
 
@@ -134,10 +128,9 @@ message Log {
 // the seq number must be incremental
 // data is opaque and driver dependent (could be audio/video/characters/...)
 message DataChunk {
-    string device_id=1;  // The device it belongs to
-    optional string handle=2;     // The handle inside the device i.e. when multiple streams/operations are possible
-    uint64 seq=3;
-    optional uint64 offset=4;       // The offset of the data in the stream (i.e. useful for block devices)
-    bytes data=5;
+  string device_id = 1; // The device it belongs to
+  optional string handle = 2; // The handle inside the device i.e. when multiple streams/operations are possible
+  uint64 seq = 3;
+  optional uint64 offset = 4; // The offset of the data in the stream (i.e. useful for block devices)
+  bytes data = 5;
 }
-
