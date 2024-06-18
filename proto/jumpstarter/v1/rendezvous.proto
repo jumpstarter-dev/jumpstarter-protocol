@@ -2,11 +2,11 @@
 
 syntax = "proto3";
 
-package rendezvous;
+package jumpstarter.v1;
 
-service Rendezvous {
-  rpc Listen(Request) returns (stream Response);
-  rpc Dial(Request) returns (Response);
+service RendezvousService {
+  rpc Listen(ListenRequest) returns (stream ListenResponse);
+  rpc Dial(DialRequest) returns (DialResponse);
   rpc Stream(stream Frame) returns (stream Frame);
 }
 
@@ -14,10 +14,18 @@ message Frame {
   bytes payload = 1;
 }
 
-message Request {
+message DialRequest {
   string address = 1;
 }
 
-message Response {
+message DialResponse {
+  string stream = 1;
+}
+
+message ListenRequest {
+  string address = 1;
+}
+
+message ListenResponse {
   string stream = 1;
 }

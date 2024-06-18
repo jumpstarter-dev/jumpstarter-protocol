@@ -2,7 +2,7 @@
 
 syntax = "proto3";
 
-package jumpstarter;
+package jumpstarter.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";

@@ -5,7 +5,7 @@ import grpc
 from jumpstarter.v1 import rendezvous_pb2 as jumpstarter_dot_v1_dot_rendezvous__pb2
 
 
-class RendezvousStub(object):
+class RendezvousServiceStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -15,23 +15,23 @@ class RendezvousStub(object):
             channel: A grpc.Channel.
         """
         self.Listen = channel.unary_stream(
-                '/rendezvous.Rendezvous/Listen',
-                request_serializer=jumpstarter_dot_v1_dot_rendezvous__pb2.Request.SerializeToString,
-                response_deserializer=jumpstarter_dot_v1_dot_rendezvous__pb2.Response.FromString,
+                '/jumpstarter.v1.RendezvousService/Listen',
+                request_serializer=jumpstarter_dot_v1_dot_rendezvous__pb2.ListenRequest.SerializeToString,
+                response_deserializer=jumpstarter_dot_v1_dot_rendezvous__pb2.ListenResponse.FromString,
                 _registered_method=True)
         self.Dial = channel.unary_unary(
-                '/rendezvous.Rendezvous/Dial',
-                request_serializer=jumpstarter_dot_v1_dot_rendezvous__pb2.Request.SerializeToString,
-                response_deserializer=jumpstarter_dot_v1_dot_rendezvous__pb2.Response.FromString,
+                '/jumpstarter.v1.RendezvousService/Dial',
+                request_serializer=jumpstarter_dot_v1_dot_rendezvous__pb2.DialRequest.SerializeToString,
+                response_deserializer=jumpstarter_dot_v1_dot_rendezvous__pb2.DialResponse.FromString,
                 _registered_method=True)
         self.Stream = channel.stream_stream(
-                '/rendezvous.Rendezvous/Stream',
+                '/jumpstarter.v1.RendezvousService/Stream',
                 request_serializer=jumpstarter_dot_v1_dot_rendezvous__pb2.Frame.SerializeToString,
                 response_deserializer=jumpstarter_dot_v1_dot_rendezvous__pb2.Frame.FromString,
                 _registered_method=True)
 
 
-class RendezvousServicer(object):
+class RendezvousServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def Listen(self, request, context):
@@ -53,17 +53,17 @@ class RendezvousServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_RendezvousServicer_to_server(servicer, server):
+def add_RendezvousServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Listen': grpc.unary_stream_rpc_method_handler(
                     servicer.Listen,
-                    request_deserializer=jumpstarter_dot_v1_dot_rendezvous__pb2.Request.FromString,
-                    response_serializer=jumpstarter_dot_v1_dot_rendezvous__pb2.Response.SerializeToString,
+                    request_deserializer=jumpstarter_dot_v1_dot_rendezvous__pb2.ListenRequest.FromString,
+                    response_serializer=jumpstarter_dot_v1_dot_rendezvous__pb2.ListenResponse.SerializeToString,
             ),
             'Dial': grpc.unary_unary_rpc_method_handler(
                     servicer.Dial,
-                    request_deserializer=jumpstarter_dot_v1_dot_rendezvous__pb2.Request.FromString,
-                    response_serializer=jumpstarter_dot_v1_dot_rendezvous__pb2.Response.SerializeToString,
+                    request_deserializer=jumpstarter_dot_v1_dot_rendezvous__pb2.DialRequest.FromString,
+                    response_serializer=jumpstarter_dot_v1_dot_rendezvous__pb2.DialResponse.SerializeToString,
             ),
             'Stream': grpc.stream_stream_rpc_method_handler(
                     servicer.Stream,
@@ -72,13 +72,13 @@ def add_RendezvousServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'rendezvous.Rendezvous', rpc_method_handlers)
+            'jumpstarter.v1.RendezvousService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('rendezvous.Rendezvous', rpc_method_handlers)
+    server.add_registered_method_handlers('jumpstarter.v1.RendezvousService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class Rendezvous(object):
+class RendezvousService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -95,9 +95,9 @@ class Rendezvous(object):
         return grpc.experimental.unary_stream(
             request,
             target,
-            '/rendezvous.Rendezvous/Listen',
-            jumpstarter_dot_v1_dot_rendezvous__pb2.Request.SerializeToString,
-            jumpstarter_dot_v1_dot_rendezvous__pb2.Response.FromString,
+            '/jumpstarter.v1.RendezvousService/Listen',
+            jumpstarter_dot_v1_dot_rendezvous__pb2.ListenRequest.SerializeToString,
+            jumpstarter_dot_v1_dot_rendezvous__pb2.ListenResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -122,9 +122,9 @@ class Rendezvous(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/rendezvous.Rendezvous/Dial',
-            jumpstarter_dot_v1_dot_rendezvous__pb2.Request.SerializeToString,
-            jumpstarter_dot_v1_dot_rendezvous__pb2.Response.FromString,
+            '/jumpstarter.v1.RendezvousService/Dial',
+            jumpstarter_dot_v1_dot_rendezvous__pb2.DialRequest.SerializeToString,
+            jumpstarter_dot_v1_dot_rendezvous__pb2.DialResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -149,7 +149,7 @@ class Rendezvous(object):
         return grpc.experimental.stream_stream(
             request_iterator,
             target,
-            '/rendezvous.Rendezvous/Stream',
+            '/jumpstarter.v1.RendezvousService/Stream',
             jumpstarter_dot_v1_dot_rendezvous__pb2.Frame.SerializeToString,
             jumpstarter_dot_v1_dot_rendezvous__pb2.Frame.FromString,
             options,

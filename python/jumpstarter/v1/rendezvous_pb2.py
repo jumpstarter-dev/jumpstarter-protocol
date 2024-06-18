@@ -24,20 +24,24 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1fjumpstarter/v1/rendezvous.proto\x12\nrendezvous\"!\n\x05\x46rame\x12\x18\n\x07payload\x18\x01 \x01(\x0cR\x07payload\"#\n\x07Request\x12\x18\n\x07\x61\x64\x64ress\x18\x01 \x01(\tR\x07\x61\x64\x64ress\"\"\n\x08Response\x12\x16\n\x06stream\x18\x01 \x01(\tR\x06stream2\xaa\x01\n\nRendezvous\x12\x35\n\x06Listen\x12\x13.rendezvous.Request\x1a\x14.rendezvous.Response0\x01\x12\x31\n\x04\x44ial\x12\x13.rendezvous.Request\x1a\x14.rendezvous.Response\x12\x32\n\x06Stream\x12\x11.rendezvous.Frame\x1a\x11.rendezvous.Frame(\x01\x30\x01\x42\xa9\x01\n\x0e\x63om.rendezvousB\x0fRendezvousProtoP\x01Z>github.com/jumpstarter-dev/jumpstarter-protocol/jumpstarter/v1\xa2\x02\x03RXX\xaa\x02\nRendezvous\xca\x02\nRendezvous\xe2\x02\x16Rendezvous\\GPBMetadata\xea\x02\nRendezvousb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1fjumpstarter/v1/rendezvous.proto\x12\x0ejumpstarter.v1\"!\n\x05\x46rame\x12\x18\n\x07payload\x18\x01 \x01(\x0cR\x07payload\"\'\n\x0b\x44ialRequest\x12\x18\n\x07\x61\x64\x64ress\x18\x01 \x01(\tR\x07\x61\x64\x64ress\"&\n\x0c\x44ialResponse\x12\x16\n\x06stream\x18\x01 \x01(\tR\x06stream\")\n\rListenRequest\x12\x18\n\x07\x61\x64\x64ress\x18\x01 \x01(\tR\x07\x61\x64\x64ress\"(\n\x0eListenResponse\x12\x16\n\x06stream\x18\x01 \x01(\tR\x06stream2\xdd\x01\n\x11RendezvousService\x12I\n\x06Listen\x12\x1d.jumpstarter.v1.ListenRequest\x1a\x1e.jumpstarter.v1.ListenResponse0\x01\x12\x41\n\x04\x44ial\x12\x1b.jumpstarter.v1.DialRequest\x1a\x1c.jumpstarter.v1.DialResponse\x12:\n\x06Stream\x12\x15.jumpstarter.v1.Frame\x1a\x15.jumpstarter.v1.Frame(\x01\x30\x01\x42\xcc\x01\n\x12\x63om.jumpstarter.v1B\x0fRendezvousProtoP\x01ZLgithub.com/jumpstarter-dev/jumpstarter-protocol/jumpstarter/v1;jumpstarterv1\xa2\x02\x03JXX\xaa\x02\x0eJumpstarter.V1\xca\x02\x0eJumpstarter\\V1\xe2\x02\x1aJumpstarter\\V1\\GPBMetadata\xea\x02\x0fJumpstarter::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'jumpstarter.v1.rendezvous_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n\016com.rendezvousB\017RendezvousProtoP\001Z>github.com/jumpstarter-dev/jumpstarter-protocol/jumpstarter/v1\242\002\003RXX\252\002\nRendezvous\312\002\nRendezvous\342\002\026Rendezvous\\GPBMetadata\352\002\nRendezvous'
-  _globals['_FRAME']._serialized_start=47
-  _globals['_FRAME']._serialized_end=80
-  _globals['_REQUEST']._serialized_start=82
-  _globals['_REQUEST']._serialized_end=117
-  _globals['_RESPONSE']._serialized_start=119
-  _globals['_RESPONSE']._serialized_end=153
-  _globals['_RENDEZVOUS']._serialized_start=156
-  _globals['_RENDEZVOUS']._serialized_end=326
+  _globals['DESCRIPTOR']._serialized_options = b'\n\022com.jumpstarter.v1B\017RendezvousProtoP\001ZLgithub.com/jumpstarter-dev/jumpstarter-protocol/jumpstarter/v1;jumpstarterv1\242\002\003JXX\252\002\016Jumpstarter.V1\312\002\016Jumpstarter\\V1\342\002\032Jumpstarter\\V1\\GPBMetadata\352\002\017Jumpstarter::V1'
+  _globals['_FRAME']._serialized_start=51
+  _globals['_FRAME']._serialized_end=84
+  _globals['_DIALREQUEST']._serialized_start=86
+  _globals['_DIALREQUEST']._serialized_end=125
+  _globals['_DIALRESPONSE']._serialized_start=127
+  _globals['_DIALRESPONSE']._serialized_end=165
+  _globals['_LISTENREQUEST']._serialized_start=167
+  _globals['_LISTENREQUEST']._serialized_end=208
+  _globals['_LISTENRESPONSE']._serialized_start=210
+  _globals['_LISTENRESPONSE']._serialized_end=250
+  _globals['_RENDEZVOUSSERVICE']._serialized_start=253
+  _globals['_RENDEZVOUSSERVICE']._serialized_end=474
 # @@protoc_insertion_point(module_scope)

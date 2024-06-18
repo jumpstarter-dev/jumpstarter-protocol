@@ -26,44 +26,44 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n jumpstarter/v1/jumpstarter.proto\x12\x0bjumpstarter\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xb1\x01\n\rServerCommand\x12\'\n\x04ping\x18\x01 \x01(\x0b\x32\x11.jumpstarter.PingH\x00R\x04ping\x12:\n\x0b\x64river_call\x18\x02 \x01(\x0b\x32\x17.jumpstarter.DriverCallH\x00R\ndriverCall\x12*\n\x05\x65vent\x18\x03 \x01(\x0b\x32\x12.jumpstarter.EventH\x00R\x05\x65ventB\x0f\n\rrequest_oneof\",\n\x04Ping\x12\x12\n\x04\x64\x61ta\x18\x01 \x01(\tR\x04\x64\x61ta\x12\x10\n\x03seq\x18\x02 \x01(\x04R\x03seq\"\x97\x01\n\nDriverCall\x12\x1b\n\tdevice_id\x18\x01 \x01(\tR\x08\x64\x65viceId\x12\x1b\n\tcall_uuid\x18\x02 \x01(\tR\x08\x63\x61llUuid\x12#\n\rdriver_method\x18\x03 \x01(\tR\x0c\x64riverMethod\x12*\n\x04\x61rgs\x18\x04 \x03(\x0b\x32\x16.google.protobuf.ValueR\x04\x61rgs\"9\n\x0b\x45xporterBye\x12\x12\n\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x16\n\x06reason\x18\x02 \x01(\tR\x06reason\"\x90\x02\n\x0e\x45xporterReport\x12\x12\n\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n\x08hostname\x18\x02 \x01(\tR\x08hostname\x12\x12\n\x04name\x18\x03 \x01(\tR\x04name\x12?\n\x06labels\x18\x04 \x03(\x0b\x32\'.jumpstarter.ExporterReport.LabelsEntryR\x06labels\x12>\n\rdevice_report\x18\x05 \x03(\x0b\x32\x19.jumpstarter.DeviceReportR\x0c\x64\x65viceReport\x1a\x39\n\x0bLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\xbb\x01\n\x0c\x44\x65viceReport\x12\x1b\n\tdevice_id\x18\x01 \x01(\tR\x08\x64\x65viceId\x12-\n\x10parent_device_id\x18\x02 \x01(\tH\x00R\x0eparentDeviceId\x88\x01\x01\x12\x1f\n\x0b\x64\x65vice_name\x18\x03 \x01(\tR\ndeviceName\x12)\n\x10\x64river_interface\x18\x04 \x01(\tR\x0f\x64riverInterfaceB\x13\n\x11_parent_device_id\"\xad\x02\n\x0e\x43lientResponse\x12\'\n\x04pong\x18\x01 \x01(\x0b\x32\x11.jumpstarter.PongH\x00R\x04pong\x12\x46\n\x0f\x65xporter_report\x18\x02 \x01(\x0b\x32\x1b.jumpstarter.ExporterReportH\x00R\x0e\x65xporterReport\x12\x46\n\x0f\x64river_response\x18\x03 \x01(\x0b\x32\x1b.jumpstarter.DriverResponseH\x00R\x0e\x64riverResponse\x12*\n\x05\x65vent\x18\x04 \x01(\x0b\x32\x12.jumpstarter.EventH\x00R\x05\x65vent\x12$\n\x03log\x18\x05 \x01(\x0b\x32\x10.jumpstarter.LogH\x00R\x03logB\x10\n\x0eresponse_oneof\",\n\x04Pong\x12\x12\n\x04\x64\x61ta\x18\x01 \x01(\tR\x04\x64\x61ta\x12\x10\n\x03seq\x18\x02 \x01(\x04R\x03seq\"N\n\x0e\x44riverResponse\x12\x1b\n\tcall_uuid\x18\x01 \x01(\tR\x08\x63\x61llUuid\x12\x1f\n\x0bjson_result\x18\x02 \x01(\tR\njsonResult\"t\n\x05\x45vent\x12\x1b\n\tdevice_id\x18\x01 \x01(\tR\x08\x64\x65viceId\x12\x1b\n\x06handle\x18\x02 \x01(\tH\x00R\x06handle\x88\x01\x01\x12\x12\n\x04type\x18\x03 \x01(\tR\x04type\x12\x12\n\x04\x64\x61ta\x18\x04 \x01(\tR\x04\x64\x61taB\t\n\x07_handle\"z\n\x03Log\x12\x1b\n\tdevice_id\x18\x01 \x01(\tR\x08\x64\x65viceId\x12\x1b\n\x06handle\x18\x02 \x01(\tH\x00R\x06handle\x88\x01\x01\x12\x14\n\x05level\x18\x03 \x01(\tR\x05level\x12\x18\n\x07message\x18\x04 \x01(\tR\x07messageB\t\n\x07_handle\"\x9e\x01\n\tDataChunk\x12\x1b\n\tdevice_id\x18\x01 \x01(\tR\x08\x64\x65viceId\x12\x1b\n\x06handle\x18\x02 \x01(\tH\x00R\x06handle\x88\x01\x01\x12\x10\n\x03seq\x18\x03 \x01(\x04R\x03seq\x12\x1b\n\x06offset\x18\x04 \x01(\x04H\x01R\x06offset\x88\x01\x01\x12\x12\n\x04\x64\x61ta\x18\x05 \x01(\x0cR\x04\x64\x61taB\t\n\x07_handleB\t\n\x07_offset2\xd2\x02\n\x0b\x46orExporter\x12?\n\x08Register\x12\x1b.jumpstarter.ExporterReport\x1a\x16.google.protobuf.Empty\x12L\n\rControlStream\x12\x1b.jumpstarter.ClientResponse\x1a\x1a.jumpstarter.ServerCommand(\x01\x30\x01\x12\x37\n\x03\x42ye\x12\x18.jumpstarter.ExporterBye\x1a\x16.google.protobuf.Empty\x12@\n\nDataStream\x12\x16.jumpstarter.DataChunk\x1a\x16.jumpstarter.DataChunk(\x01\x30\x01\x12\x39\n\x0b\x45ventStream\x12\x12.jumpstarter.Event\x1a\x12.jumpstarter.Event(\x01\x30\x01\x32\xdd\x01\n\tForClient\x12@\n\tGetReport\x12\x16.google.protobuf.Empty\x1a\x1b.jumpstarter.ExporterReport\x12L\n\rControlStream\x12\x1a.jumpstarter.ServerCommand\x1a\x1b.jumpstarter.ClientResponse(\x01\x30\x01\x12@\n\nDataStream\x12\x16.jumpstarter.DataChunk\x1a\x16.jumpstarter.DataChunk(\x01\x30\x01\x42\xaf\x01\n\x0f\x63om.jumpstarterB\x10JumpstarterProtoP\x01Z>github.com/jumpstarter-dev/jumpstarter-protocol/jumpstarter/v1\xa2\x02\x03JXX\xaa\x02\x0bJumpstarter\xca\x02\x0bJumpstarter\xe2\x02\x17Jumpstarter\\GPBMetadata\xea\x02\x0bJumpstarterb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n jumpstarter/v1/jumpstarter.proto\x12\x0ejumpstarter.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xba\x01\n\rServerCommand\x12*\n\x04ping\x18\x01 \x01(\x0b\x32\x14.jumpstarter.v1.PingH\x00R\x04ping\x12=\n\x0b\x64river_call\x18\x02 \x01(\x0b\x32\x1a.jumpstarter.v1.DriverCallH\x00R\ndriverCall\x12-\n\x05\x65vent\x18\x03 \x01(\x0b\x32\x15.jumpstarter.v1.EventH\x00R\x05\x65ventB\x0f\n\rrequest_oneof\",\n\x04Ping\x12\x12\n\x04\x64\x61ta\x18\x01 \x01(\tR\x04\x64\x61ta\x12\x10\n\x03seq\x18\x02 \x01(\x04R\x03seq\"\x97\x01\n\nDriverCall\x12\x1b\n\tdevice_id\x18\x01 \x01(\tR\x08\x64\x65viceId\x12\x1b\n\tcall_uuid\x18\x02 \x01(\tR\x08\x63\x61llUuid\x12#\n\rdriver_method\x18\x03 \x01(\tR\x0c\x64riverMethod\x12*\n\x04\x61rgs\x18\x04 \x03(\x0b\x32\x16.google.protobuf.ValueR\x04\x61rgs\"9\n\x0b\x45xporterBye\x12\x12\n\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x16\n\x06reason\x18\x02 \x01(\tR\x06reason\"\x96\x02\n\x0e\x45xporterReport\x12\x12\n\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n\x08hostname\x18\x02 \x01(\tR\x08hostname\x12\x12\n\x04name\x18\x03 \x01(\tR\x04name\x12\x42\n\x06labels\x18\x04 \x03(\x0b\x32*.jumpstarter.v1.ExporterReport.LabelsEntryR\x06labels\x12\x41\n\rdevice_report\x18\x05 \x03(\x0b\x32\x1c.jumpstarter.v1.DeviceReportR\x0c\x64\x65viceReport\x1a\x39\n\x0bLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\xbb\x01\n\x0c\x44\x65viceReport\x12\x1b\n\tdevice_id\x18\x01 \x01(\tR\x08\x64\x65viceId\x12-\n\x10parent_device_id\x18\x02 \x01(\tH\x00R\x0eparentDeviceId\x88\x01\x01\x12\x1f\n\x0b\x64\x65vice_name\x18\x03 \x01(\tR\ndeviceName\x12)\n\x10\x64river_interface\x18\x04 \x01(\tR\x0f\x64riverInterfaceB\x13\n\x11_parent_device_id\"\xbc\x02\n\x0e\x43lientResponse\x12*\n\x04pong\x18\x01 \x01(\x0b\x32\x14.jumpstarter.v1.PongH\x00R\x04pong\x12I\n\x0f\x65xporter_report\x18\x02 \x01(\x0b\x32\x1e.jumpstarter.v1.ExporterReportH\x00R\x0e\x65xporterReport\x12I\n\x0f\x64river_response\x18\x03 \x01(\x0b\x32\x1e.jumpstarter.v1.DriverResponseH\x00R\x0e\x64riverResponse\x12-\n\x05\x65vent\x18\x04 \x01(\x0b\x32\x15.jumpstarter.v1.EventH\x00R\x05\x65vent\x12\'\n\x03log\x18\x05 \x01(\x0b\x32\x13.jumpstarter.v1.LogH\x00R\x03logB\x10\n\x0eresponse_oneof\",\n\x04Pong\x12\x12\n\x04\x64\x61ta\x18\x01 \x01(\tR\x04\x64\x61ta\x12\x10\n\x03seq\x18\x02 \x01(\x04R\x03seq\"N\n\x0e\x44riverResponse\x12\x1b\n\tcall_uuid\x18\x01 \x01(\tR\x08\x63\x61llUuid\x12\x1f\n\x0bjson_result\x18\x02 \x01(\tR\njsonResult\"t\n\x05\x45vent\x12\x1b\n\tdevice_id\x18\x01 \x01(\tR\x08\x64\x65viceId\x12\x1b\n\x06handle\x18\x02 \x01(\tH\x00R\x06handle\x88\x01\x01\x12\x12\n\x04type\x18\x03 \x01(\tR\x04type\x12\x12\n\x04\x64\x61ta\x18\x04 \x01(\tR\x04\x64\x61taB\t\n\x07_handle\"z\n\x03Log\x12\x1b\n\tdevice_id\x18\x01 \x01(\tR\x08\x64\x65viceId\x12\x1b\n\x06handle\x18\x02 \x01(\tH\x00R\x06handle\x88\x01\x01\x12\x14\n\x05level\x18\x03 \x01(\tR\x05level\x12\x18\n\x07message\x18\x04 \x01(\tR\x07messageB\t\n\x07_handle\"\x9e\x01\n\tDataChunk\x12\x1b\n\tdevice_id\x18\x01 \x01(\tR\x08\x64\x65viceId\x12\x1b\n\x06handle\x18\x02 \x01(\tH\x00R\x06handle\x88\x01\x01\x12\x10\n\x03seq\x18\x03 \x01(\x04R\x03seq\x12\x1b\n\x06offset\x18\x04 \x01(\x04H\x01R\x06offset\x88\x01\x01\x12\x12\n\x04\x64\x61ta\x18\x05 \x01(\x0cR\x04\x64\x61taB\t\n\x07_handleB\t\n\x07_offset2\xea\x02\n\x0b\x46orExporter\x12\x42\n\x08Register\x12\x1e.jumpstarter.v1.ExporterReport\x1a\x16.google.protobuf.Empty\x12R\n\rControlStream\x12\x1e.jumpstarter.v1.ClientResponse\x1a\x1d.jumpstarter.v1.ServerCommand(\x01\x30\x01\x12:\n\x03\x42ye\x12\x1b.jumpstarter.v1.ExporterBye\x1a\x16.google.protobuf.Empty\x12\x46\n\nDataStream\x12\x19.jumpstarter.v1.DataChunk\x1a\x19.jumpstarter.v1.DataChunk(\x01\x30\x01\x12?\n\x0b\x45ventStream\x12\x15.jumpstarter.v1.Event\x1a\x15.jumpstarter.v1.Event(\x01\x30\x01\x32\xec\x01\n\tForClient\x12\x43\n\tGetReport\x12\x16.google.protobuf.Empty\x1a\x1e.jumpstarter.v1.ExporterReport\x12R\n\rControlStream\x12\x1d.jumpstarter.v1.ServerCommand\x1a\x1e.jumpstarter.v1.ClientResponse(\x01\x30\x01\x12\x46\n\nDataStream\x12\x19.jumpstarter.v1.DataChunk\x1a\x19.jumpstarter.v1.DataChunk(\x01\x30\x01\x42\xcd\x01\n\x12\x63om.jumpstarter.v1B\x10JumpstarterProtoP\x01ZLgithub.com/jumpstarter-dev/jumpstarter-protocol/jumpstarter/v1;jumpstarterv1\xa2\x02\x03JXX\xaa\x02\x0eJumpstarter.V1\xca\x02\x0eJumpstarter\\V1\xe2\x02\x1aJumpstarter\\V1\\GPBMetadata\xea\x02\x0fJumpstarter::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'jumpstarter.v1.jumpstarter_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'\n\017com.jumpstarterB\020JumpstarterProtoP\001Z>github.com/jumpstarter-dev/jumpstarter-protocol/jumpstarter/v1\242\002\003JXX\252\002\013Jumpstarter\312\002\013Jumpstarter\342\002\027Jumpstarter\\GPBMetadata\352\002\013Jumpstarter'
+  _globals['DESCRIPTOR']._serialized_options = b'\n\022com.jumpstarter.v1B\020JumpstarterProtoP\001ZLgithub.com/jumpstarter-dev/jumpstarter-protocol/jumpstarter/v1;jumpstarterv1\242\002\003JXX\252\002\016Jumpstarter.V1\312\002\016Jumpstarter\\V1\342\002\032Jumpstarter\\V1\\GPBMetadata\352\002\017Jumpstarter::V1'
   _globals['_EXPORTERREPORT_LABELSENTRY']._loaded_options = None
   _globals['_EXPORTERREPORT_LABELSENTRY']._serialized_options = b'8\001'
-  _globals['_SERVERCOMMAND']._serialized_start=109
-  _globals['_SERVERCOMMAND']._serialized_end=286
-  _globals['_PING']._serialized_start=288
-  _globals['_PING']._serialized_end=332
-  _globals['_DRIVERCALL']._serialized_start=335
-  _globals['_DRIVERCALL']._serialized_end=486
-  _globals['_EXPORTERBYE']._serialized_start=488
-  _globals['_EXPORTERBYE']._serialized_end=545
-  _globals['_EXPORTERREPORT']._serialized_start=548
-  _globals['_EXPORTERREPORT']._serialized_end=820
-  _globals['_EXPORTERREPORT_LABELSENTRY']._serialized_start=763
-  _globals['_EXPORTERREPORT_LABELSENTRY']._serialized_end=820
-  _globals['_DEVICEREPORT']._serialized_start=823
-  _globals['_DEVICEREPORT']._serialized_end=1010
-  _globals['_CLIENTRESPONSE']._serialized_start=1013
-  _globals['_CLIENTRESPONSE']._serialized_end=1314
-  _globals['_PONG']._serialized_start=1316
-  _globals['_PONG']._serialized_end=1360
-  _globals['_DRIVERRESPONSE']._serialized_start=1362
-  _globals['_DRIVERRESPONSE']._serialized_end=1440
-  _globals['_EVENT']._serialized_start=1442
-  _globals['_EVENT']._serialized_end=1558
-  _globals['_LOG']._serialized_start=1560
-  _globals['_LOG']._serialized_end=1682
-  _globals['_DATACHUNK']._serialized_start=1685
-  _globals['_DATACHUNK']._serialized_end=1843
-  _globals['_FOREXPORTER']._serialized_start=1846
-  _globals['_FOREXPORTER']._serialized_end=2184
-  _globals['_FORCLIENT']._serialized_start=2187
-  _globals['_FORCLIENT']._serialized_end=2408
+  _globals['_SERVERCOMMAND']._serialized_start=112
+  _globals['_SERVERCOMMAND']._serialized_end=298
+  _globals['_PING']._serialized_start=300
+  _globals['_PING']._serialized_end=344
+  _globals['_DRIVERCALL']._serialized_start=347
+  _globals['_DRIVERCALL']._serialized_end=498
+  _globals['_EXPORTERBYE']._serialized_start=500
+  _globals['_EXPORTERBYE']._serialized_end=557
+  _globals['_EXPORTERREPORT']._serialized_start=560
+  _globals['_EXPORTERREPORT']._serialized_end=838
+  _globals['_EXPORTERREPORT_LABELSENTRY']._serialized_start=781
+  _globals['_EXPORTERREPORT_LABELSENTRY']._serialized_end=838
+  _globals['_DEVICEREPORT']._serialized_start=841
+  _globals['_DEVICEREPORT']._serialized_end=1028
+  _globals['_CLIENTRESPONSE']._serialized_start=1031
+  _globals['_CLIENTRESPONSE']._serialized_end=1347
+  _globals['_PONG']._serialized_start=1349
+  _globals['_PONG']._serialized_end=1393
+  _globals['_DRIVERRESPONSE']._serialized_start=1395
+  _globals['_DRIVERRESPONSE']._serialized_end=1473
+  _globals['_EVENT']._serialized_start=1475
+  _globals['_EVENT']._serialized_end=1591
+  _globals['_LOG']._serialized_start=1593
+  _globals['_LOG']._serialized_end=1715
+  _globals['_DATACHUNK']._serialized_start=1718
+  _globals['_DATACHUNK']._serialized_end=1876
+  _globals['_FOREXPORTER']._serialized_start=1879
+  _globals['_FOREXPORTER']._serialized_end=2241
+  _globals['_FORCLIENT']._serialized_start=2244
+  _globals['_FORCLIENT']._serialized_end=2480
 # @@protoc_insertion_point(module_scope)

@@ -6,7 +6,7 @@
 // - protoc             (unknown)
 // source: jumpstarter/v1/rendezvous.proto
 
-package v1
+package jumpstarterv1
 
 import (
 	context "context"
@@ -21,35 +21,35 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	Rendezvous_Listen_FullMethodName = "/rendezvous.Rendezvous/Listen"
-	Rendezvous_Dial_FullMethodName   = "/rendezvous.Rendezvous/Dial"
-	Rendezvous_Stream_FullMethodName = "/rendezvous.Rendezvous/Stream"
+	RendezvousService_Listen_FullMethodName = "/jumpstarter.v1.RendezvousService/Listen"
+	RendezvousService_Dial_FullMethodName   = "/jumpstarter.v1.RendezvousService/Dial"
+	RendezvousService_Stream_FullMethodName = "/jumpstarter.v1.RendezvousService/Stream"
 )
 
-// RendezvousClient is the client API for Rendezvous service.
+// RendezvousServiceClient is the client API for RendezvousService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type RendezvousClient interface {
-	Listen(ctx context.Context, in *Request, opts ...grpc.CallOption) (Rendezvous_ListenClient, error)
-	Dial(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
-	Stream(ctx context.Context, opts ...grpc.CallOption) (Rendezvous_StreamClient, error)
+type RendezvousServiceClient interface {
+	Listen(ctx context.Context, in *ListenRequest, opts ...grpc.CallOption) (RendezvousService_ListenClient, error)
+	Dial(ctx context.Context, in *DialRequest, opts ...grpc.CallOption) (*DialResponse, error)
+	Stream(ctx context.Context, opts ...grpc.CallOption) (RendezvousService_StreamClient, error)
 }
 
-type rendezvousClient struct {
+type rendezvousServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewRendezvousClient(cc grpc.ClientConnInterface) RendezvousClient {
-	return &rendezvousClient{cc}
+func NewRendezvousServiceClient(cc grpc.ClientConnInterface) RendezvousServiceClient {
+	return &rendezvousServiceClient{cc}
 }
 
-func (c *rendezvousClient) Listen(ctx context.Context, in *Request, opts ...grpc.CallOption) (Rendezvous_ListenClient, error) {
+func (c *rendezvousServiceClient) Listen(ctx context.Context, in *ListenRequest, opts ...grpc.CallOption) (RendezvousService_ListenClient, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &Rendezvous_ServiceDesc.Streams[0], Rendezvous_Listen_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &RendezvousService_ServiceDesc.Streams[0], RendezvousService_Listen_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &rendezvousListenClient{ClientStream: stream}
+	x := &rendezvousServiceListenClient{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -59,58 +59,58 @@ func (c *rendezvousClient) Listen(ctx context.Context, in *Request, opts ...grpc
 	return x, nil
 }
 
-type Rendezvous_ListenClient interface {
-	Recv() (*Response, error)
+type RendezvousService_ListenClient interface {
+	Recv() (*ListenResponse, error)
 	grpc.ClientStream
 }
 
-type rendezvousListenClient struct {
+type rendezvousServiceListenClient struct {
 	grpc.ClientStream
 }
 
-func (x *rendezvousListenClient) Recv() (*Response, error) {
-	m := new(Response)
+func (x *rendezvousServiceListenClient) Recv() (*ListenResponse, error) {
+	m := new(ListenResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *rendezvousClient) Dial(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error) {
+func (c *rendezvousServiceClient) Dial(ctx context.Context, in *DialRequest, opts ...grpc.CallOption) (*DialResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Response)
-	err := c.cc.Invoke(ctx, Rendezvous_Dial_FullMethodName, in, out, cOpts...)
+	out := new(DialResponse)
+	err := c.cc.Invoke(ctx, RendezvousService_Dial_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *rendezvousClient) Stream(ctx context.Context, opts ...grpc.CallOption) (Rendezvous_StreamClient, error) {
+func (c *rendezvousServiceClient) Stream(ctx context.Context, opts ...grpc.CallOption) (RendezvousService_StreamClient, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &Rendezvous_ServiceDesc.Streams[1], Rendezvous_Stream_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &RendezvousService_ServiceDesc.Streams[1], RendezvousService_Stream_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &rendezvousStreamClient{ClientStream: stream}
+	x := &rendezvousServiceStreamClient{ClientStream: stream}
 	return x, nil
 }
 
-type Rendezvous_StreamClient interface {
+type RendezvousService_StreamClient interface {
 	Send(*Frame) error
 	Recv() (*Frame, error)
 	grpc.ClientStream
 }
 
-type rendezvousStreamClient struct {
+type rendezvousServiceStreamClient struct {
 	grpc.ClientStream
 }
 
-func (x *rendezvousStreamClient) Send(m *Frame) error {
+func (x *rendezvousServiceStreamClient) Send(m *Frame) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *rendezvousStreamClient) Recv() (*Frame, error) {
+func (x *rendezvousServiceStreamClient) Recv() (*Frame, error) {
 	m := new(Frame)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -118,100 +118,100 @@ func (x *rendezvousStreamClient) Recv() (*Frame, error) {
 	return m, nil
 }
 
-// RendezvousServer is the server API for Rendezvous service.
-// All implementations must embed UnimplementedRendezvousServer
+// RendezvousServiceServer is the server API for RendezvousService service.
+// All implementations must embed UnimplementedRendezvousServiceServer
 // for forward compatibility
-type RendezvousServer interface {
-	Listen(*Request, Rendezvous_ListenServer) error
-	Dial(context.Context, *Request) (*Response, error)
-	Stream(Rendezvous_StreamServer) error
-	mustEmbedUnimplementedRendezvousServer()
+type RendezvousServiceServer interface {
+	Listen(*ListenRequest, RendezvousService_ListenServer) error
+	Dial(context.Context, *DialRequest) (*DialResponse, error)
+	Stream(RendezvousService_StreamServer) error
+	mustEmbedUnimplementedRendezvousServiceServer()
 }
 
-// UnimplementedRendezvousServer must be embedded to have forward compatible implementations.
-type UnimplementedRendezvousServer struct {
+// UnimplementedRendezvousServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedRendezvousServiceServer struct {
 }
 
-func (UnimplementedRendezvousServer) Listen(*Request, Rendezvous_ListenServer) error {
+func (UnimplementedRendezvousServiceServer) Listen(*ListenRequest, RendezvousService_ListenServer) error {
 	return status.Errorf(codes.Unimplemented, "method Listen not implemented")
 }
-func (UnimplementedRendezvousServer) Dial(context.Context, *Request) (*Response, error) {
+func (UnimplementedRendezvousServiceServer) Dial(context.Context, *DialRequest) (*DialResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Dial not implemented")
 }
-func (UnimplementedRendezvousServer) Stream(Rendezvous_StreamServer) error {
+func (UnimplementedRendezvousServiceServer) Stream(RendezvousService_StreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method Stream not implemented")
 }
-func (UnimplementedRendezvousServer) mustEmbedUnimplementedRendezvousServer() {}
+func (UnimplementedRendezvousServiceServer) mustEmbedUnimplementedRendezvousServiceServer() {}
 
-// UnsafeRendezvousServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to RendezvousServer will
+// UnsafeRendezvousServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to RendezvousServiceServer will
 // result in compilation errors.
-type UnsafeRendezvousServer interface {
-	mustEmbedUnimplementedRendezvousServer()
+type UnsafeRendezvousServiceServer interface {
+	mustEmbedUnimplementedRendezvousServiceServer()
 }
 
-func RegisterRendezvousServer(s grpc.ServiceRegistrar, srv RendezvousServer) {
-	s.RegisterService(&Rendezvous_ServiceDesc, srv)
+func RegisterRendezvousServiceServer(s grpc.ServiceRegistrar, srv RendezvousServiceServer) {
+	s.RegisterService(&RendezvousService_ServiceDesc, srv)
 }
 
-func _Rendezvous_Listen_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(Request)
+func _RendezvousService_Listen_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ListenRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(RendezvousServer).Listen(m, &rendezvousListenServer{ServerStream: stream})
+	return srv.(RendezvousServiceServer).Listen(m, &rendezvousServiceListenServer{ServerStream: stream})
 }
 
-type Rendezvous_ListenServer interface {
-	Send(*Response) error
+type RendezvousService_ListenServer interface {
+	Send(*ListenResponse) error
 	grpc.ServerStream
 }
 
-type rendezvousListenServer struct {
+type rendezvousServiceListenServer struct {
 	grpc.ServerStream
 }
 
-func (x *rendezvousListenServer) Send(m *Response) error {
+func (x *rendezvousServiceListenServer) Send(m *ListenResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _Rendezvous_Dial_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request)
+func _RendezvousService_Dial_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DialRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RendezvousServer).Dial(ctx, in)
+		return srv.(RendezvousServiceServer).Dial(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Rendezvous_Dial_FullMethodName,
+		FullMethod: RendezvousService_Dial_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RendezvousServer).Dial(ctx, req.(*Request))
+		return srv.(RendezvousServiceServer).Dial(ctx, req.(*DialRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Rendezvous_Stream_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(RendezvousServer).Stream(&rendezvousStreamServer{ServerStream: stream})
+func _RendezvousService_Stream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(RendezvousServiceServer).Stream(&rendezvousServiceStreamServer{ServerStream: stream})
 }
 
-type Rendezvous_StreamServer interface {
+type RendezvousService_StreamServer interface {
 	Send(*Frame) error
 	Recv() (*Frame, error)
 	grpc.ServerStream
 }
 
-type rendezvousStreamServer struct {
+type rendezvousServiceStreamServer struct {
 	grpc.ServerStream
 }
 
-func (x *rendezvousStreamServer) Send(m *Frame) error {
+func (x *rendezvousServiceStreamServer) Send(m *Frame) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *rendezvousStreamServer) Recv() (*Frame, error) {
+func (x *rendezvousServiceStreamServer) Recv() (*Frame, error) {
 	m := new(Frame)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -219,27 +219,27 @@ func (x *rendezvousStreamServer) Recv() (*Frame, error) {
 	return m, nil
 }
 
-// Rendezvous_ServiceDesc is the grpc.ServiceDesc for Rendezvous service.
+// RendezvousService_ServiceDesc is the grpc.ServiceDesc for RendezvousService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Rendezvous_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "rendezvous.Rendezvous",
-	HandlerType: (*RendezvousServer)(nil),
+var RendezvousService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "jumpstarter.v1.RendezvousService",
+	HandlerType: (*RendezvousServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Dial",
-			Handler:    _Rendezvous_Dial_Handler,
+			Handler:    _RendezvousService_Dial_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "Listen",
-			Handler:       _Rendezvous_Listen_Handler,
+			Handler:       _RendezvousService_Listen_Handler,
 			ServerStreams: true,
 		},
 		{
 			StreamName:    "Stream",
-			Handler:       _Rendezvous_Stream_Handler,
+			Handler:       _RendezvousService_Stream_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},

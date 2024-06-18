@@ -6,7 +6,7 @@
 // - protoc             (unknown)
 // source: jumpstarter/v1/jumpstarter.proto
 
-package v1
+package jumpstarterv1
 
 import (
 	context "context"
@@ -22,11 +22,11 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	ForExporter_Register_FullMethodName      = "/jumpstarter.ForExporter/Register"
-	ForExporter_ControlStream_FullMethodName = "/jumpstarter.ForExporter/ControlStream"
-	ForExporter_Bye_FullMethodName           = "/jumpstarter.ForExporter/Bye"
-	ForExporter_DataStream_FullMethodName    = "/jumpstarter.ForExporter/DataStream"
-	ForExporter_EventStream_FullMethodName   = "/jumpstarter.ForExporter/EventStream"
+	ForExporter_Register_FullMethodName      = "/jumpstarter.v1.ForExporter/Register"
+	ForExporter_ControlStream_FullMethodName = "/jumpstarter.v1.ForExporter/ControlStream"
+	ForExporter_Bye_FullMethodName           = "/jumpstarter.v1.ForExporter/Bye"
+	ForExporter_DataStream_FullMethodName    = "/jumpstarter.v1.ForExporter/DataStream"
+	ForExporter_EventStream_FullMethodName   = "/jumpstarter.v1.ForExporter/EventStream"
 )
 
 // ForExporterClient is the client API for ForExporter service.
@@ -340,7 +340,7 @@ func (x *forExporterEventStreamServer) Recv() (*Event, error) {
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ForExporter_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "jumpstarter.ForExporter",
+	ServiceName: "jumpstarter.v1.ForExporter",
 	HandlerType: (*ForExporterServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -376,9 +376,9 @@ var ForExporter_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	ForClient_GetReport_FullMethodName     = "/jumpstarter.ForClient/GetReport"
-	ForClient_ControlStream_FullMethodName = "/jumpstarter.ForClient/ControlStream"
-	ForClient_DataStream_FullMethodName    = "/jumpstarter.ForClient/DataStream"
+	ForClient_GetReport_FullMethodName     = "/jumpstarter.v1.ForClient/GetReport"
+	ForClient_ControlStream_FullMethodName = "/jumpstarter.v1.ForClient/ControlStream"
+	ForClient_DataStream_FullMethodName    = "/jumpstarter.v1.ForClient/DataStream"
 )
 
 // ForClientClient is the client API for ForClient service.
@@ -594,7 +594,7 @@ func (x *forClientDataStreamServer) Recv() (*DataChunk, error) {
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ForClient_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "jumpstarter.ForClient",
+	ServiceName: "jumpstarter.v1.ForClient",
 	HandlerType: (*ForClientServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

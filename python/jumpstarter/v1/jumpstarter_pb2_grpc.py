@@ -17,27 +17,27 @@ class ForExporterStub(object):
             channel: A grpc.Channel.
         """
         self.Register = channel.unary_unary(
-                '/jumpstarter.ForExporter/Register',
+                '/jumpstarter.v1.ForExporter/Register',
                 request_serializer=jumpstarter_dot_v1_dot_jumpstarter__pb2.ExporterReport.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.ControlStream = channel.stream_stream(
-                '/jumpstarter.ForExporter/ControlStream',
+                '/jumpstarter.v1.ForExporter/ControlStream',
                 request_serializer=jumpstarter_dot_v1_dot_jumpstarter__pb2.ClientResponse.SerializeToString,
                 response_deserializer=jumpstarter_dot_v1_dot_jumpstarter__pb2.ServerCommand.FromString,
                 _registered_method=True)
         self.Bye = channel.unary_unary(
-                '/jumpstarter.ForExporter/Bye',
+                '/jumpstarter.v1.ForExporter/Bye',
                 request_serializer=jumpstarter_dot_v1_dot_jumpstarter__pb2.ExporterBye.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.DataStream = channel.stream_stream(
-                '/jumpstarter.ForExporter/DataStream',
+                '/jumpstarter.v1.ForExporter/DataStream',
                 request_serializer=jumpstarter_dot_v1_dot_jumpstarter__pb2.DataChunk.SerializeToString,
                 response_deserializer=jumpstarter_dot_v1_dot_jumpstarter__pb2.DataChunk.FromString,
                 _registered_method=True)
         self.EventStream = channel.stream_stream(
-                '/jumpstarter.ForExporter/EventStream',
+                '/jumpstarter.v1.ForExporter/EventStream',
                 request_serializer=jumpstarter_dot_v1_dot_jumpstarter__pb2.Event.SerializeToString,
                 response_deserializer=jumpstarter_dot_v1_dot_jumpstarter__pb2.Event.FromString,
                 _registered_method=True)
@@ -112,9 +112,9 @@ def add_ForExporterServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'jumpstarter.ForExporter', rpc_method_handlers)
+            'jumpstarter.v1.ForExporter', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('jumpstarter.ForExporter', rpc_method_handlers)
+    server.add_registered_method_handlers('jumpstarter.v1.ForExporter', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -136,7 +136,7 @@ class ForExporter(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/jumpstarter.ForExporter/Register',
+            '/jumpstarter.v1.ForExporter/Register',
             jumpstarter_dot_v1_dot_jumpstarter__pb2.ExporterReport.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
@@ -163,7 +163,7 @@ class ForExporter(object):
         return grpc.experimental.stream_stream(
             request_iterator,
             target,
-            '/jumpstarter.ForExporter/ControlStream',
+            '/jumpstarter.v1.ForExporter/ControlStream',
             jumpstarter_dot_v1_dot_jumpstarter__pb2.ClientResponse.SerializeToString,
             jumpstarter_dot_v1_dot_jumpstarter__pb2.ServerCommand.FromString,
             options,
@@ -190,7 +190,7 @@ class ForExporter(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/jumpstarter.ForExporter/Bye',
+            '/jumpstarter.v1.ForExporter/Bye',
             jumpstarter_dot_v1_dot_jumpstarter__pb2.ExporterBye.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
@@ -217,7 +217,7 @@ class ForExporter(object):
         return grpc.experimental.stream_stream(
             request_iterator,
             target,
-            '/jumpstarter.ForExporter/DataStream',
+            '/jumpstarter.v1.ForExporter/DataStream',
             jumpstarter_dot_v1_dot_jumpstarter__pb2.DataChunk.SerializeToString,
             jumpstarter_dot_v1_dot_jumpstarter__pb2.DataChunk.FromString,
             options,
@@ -244,7 +244,7 @@ class ForExporter(object):
         return grpc.experimental.stream_stream(
             request_iterator,
             target,
-            '/jumpstarter.ForExporter/EventStream',
+            '/jumpstarter.v1.ForExporter/EventStream',
             jumpstarter_dot_v1_dot_jumpstarter__pb2.Event.SerializeToString,
             jumpstarter_dot_v1_dot_jumpstarter__pb2.Event.FromString,
             options,
@@ -270,17 +270,17 @@ class ForClientStub(object):
             channel: A grpc.Channel.
         """
         self.GetReport = channel.unary_unary(
-                '/jumpstarter.ForClient/GetReport',
+                '/jumpstarter.v1.ForClient/GetReport',
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=jumpstarter_dot_v1_dot_jumpstarter__pb2.ExporterReport.FromString,
                 _registered_method=True)
         self.ControlStream = channel.stream_stream(
-                '/jumpstarter.ForClient/ControlStream',
+                '/jumpstarter.v1.ForClient/ControlStream',
                 request_serializer=jumpstarter_dot_v1_dot_jumpstarter__pb2.ServerCommand.SerializeToString,
                 response_deserializer=jumpstarter_dot_v1_dot_jumpstarter__pb2.ClientResponse.FromString,
                 _registered_method=True)
         self.DataStream = channel.stream_stream(
-                '/jumpstarter.ForClient/DataStream',
+                '/jumpstarter.v1.ForClient/DataStream',
                 request_serializer=jumpstarter_dot_v1_dot_jumpstarter__pb2.DataChunk.SerializeToString,
                 response_deserializer=jumpstarter_dot_v1_dot_jumpstarter__pb2.DataChunk.FromString,
                 _registered_method=True)
@@ -332,9 +332,9 @@ def add_ForClientServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'jumpstarter.ForClient', rpc_method_handlers)
+            'jumpstarter.v1.ForClient', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('jumpstarter.ForClient', rpc_method_handlers)
+    server.add_registered_method_handlers('jumpstarter.v1.ForClient', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -357,7 +357,7 @@ class ForClient(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/jumpstarter.ForClient/GetReport',
+            '/jumpstarter.v1.ForClient/GetReport',
             google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             jumpstarter_dot_v1_dot_jumpstarter__pb2.ExporterReport.FromString,
             options,
@@ -384,7 +384,7 @@ class ForClient(object):
         return grpc.experimental.stream_stream(
             request_iterator,
             target,
-            '/jumpstarter.ForClient/ControlStream',
+            '/jumpstarter.v1.ForClient/ControlStream',
             jumpstarter_dot_v1_dot_jumpstarter__pb2.ServerCommand.SerializeToString,
             jumpstarter_dot_v1_dot_jumpstarter__pb2.ClientResponse.FromString,
             options,
@@ -411,7 +411,7 @@ class ForClient(object):
         return grpc.experimental.stream_stream(
             request_iterator,
             target,
-            '/jumpstarter.ForClient/DataStream',
+            '/jumpstarter.v1.ForClient/DataStream',
             jumpstarter_dot_v1_dot_jumpstarter__pb2.DataChunk.SerializeToString,
             jumpstarter_dot_v1_dot_jumpstarter__pb2.DataChunk.FromString,
             options,
