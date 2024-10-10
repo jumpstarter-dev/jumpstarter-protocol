@@ -23,7 +23,7 @@ service ControllerService {
 
   // Exporter listening
   // Returns stream tokens for accepting incoming client connections
-  rpc Listen(ListenRequest) returns (stream ListenResponse);
+  rpc Listen(ListenRequest) returns (ListenResponse);
 
   // Client connecting
   // Returns stream token for connecting to the desired exporter
@@ -32,7 +32,7 @@ service ControllerService {
 
   // Audit events from the exporters
   // audit events are used to track the exporter's activity
-  rpc AuditStream(stream AuditStreamRequest) returns (google.protobuf.Empty);
+  rpc AuditStream(AuditStreamRequest) returns (google.protobuf.Empty);
 
   // List exporters
   // Returns all exporters matching filter
