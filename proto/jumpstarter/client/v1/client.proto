@@ -87,6 +87,18 @@ message Exporter {
   map<string, string> labels = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
+message Client {
+  option (google.api.resource) = {
+    type: "jumpstarter.dev/Client"
+    pattern: "namespaces/{namespace}/clients/{exporter}"
+    singular: "client"
+    plural: "clients"
+  };
+
+  string name = 1 [(google.api.field_behavior) = IDENTIFIER];
+  map<string, string> labels = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
 message Lease {
   option (google.api.resource) = {
     type: "jumpstarter.dev/Lease"
