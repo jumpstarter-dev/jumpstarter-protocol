@@ -112,6 +112,7 @@ message Exporter {
 
   string name = 1 [(google.api.field_behavior) = IDENTIFIER];
   map<string, string> labels = 2 [(google.api.field_behavior) = REQUIRED];
+  optional string username = 3;
 }
 
 message Client {
@@ -124,6 +125,8 @@ message Client {
 
   string name = 1 [(google.api.field_behavior) = IDENTIFIER];
   map<string, string> labels = 2 [(google.api.field_behavior) = REQUIRED];
+  bool admin = 3 [(google.api.field_behavior) = OPTIONAL];
+  optional string username = 4;
 }
 
 message Lease {
