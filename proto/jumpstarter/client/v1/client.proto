@@ -37,13 +37,40 @@ service ClientService {
   }
   rpc UpdateExporter(UpdateExporterRequest) returns (Exporter) {
     option (google.api.http) = {
-      patch: "/v1/{exporter.name=namespaces/*/exporter/*}"
+      patch: "/v1/{exporter.name=namespaces/*/exporters/*}"
       body: "exporter"
     };
     option (google.api.method_signature) = "exporter,update_mask";
   }
   rpc DeleteExporter(DeleteExporterRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {delete: "/v1/{name=namespaces/*/exporters/*}"};
+    option (google.api.method_signature) = "name";
+  }
+
+  rpc GetClient(GetClientRequest) returns (Client) {
+    option (google.api.http) = {get: "/v1/{name=namespaces/*/clients/*}"};
+    option (google.api.method_signature) = "name";
+  }
+  rpc ListClients(ListClientsRequest) returns (ListClientsResponse) {
+    option (google.api.http) = {get: "/v1/{parent=namespaces/*}/clients"};
+    option (google.api.method_signature) = "parent";
+  }
+  rpc CreateClient(CreateClientRequest) returns (Client) {
+    option (google.api.http) = {
+      post: "/v1/{parent=namespaces/*}/clients"
+      body: "client"
+    };
+    option (google.api.method_signature) = "parent,client,client_id";
+  }
+  rpc UpdateClient(UpdateClientRequest) returns (Client) {
+    option (google.api.http) = {
+      patch: "/v1/{client.name=namespaces/*/clients/*}"
+      body: "client"
+    };
+    option (google.api.method_signature) = "client,update_mask";
+  }
+  rpc DeleteClient(DeleteClientRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {delete: "/v1/{name=namespaces/*/clients/*}"};
     option (google.api.method_signature) = "name";
   }
 
@@ -90,7 +117,7 @@ message Exporter {
 message Client {
   option (google.api.resource) = {
     type: "jumpstarter.dev/Client"
-    pattern: "namespaces/{namespace}/clients/{exporter}"
+    pattern: "namespaces/{namespace}/clients/{client}"
     singular: "client"
     plural: "clients"
   };
@@ -171,6 +198,50 @@ message DeleteExporterRequest {
   string name = 1 [
     (google.api.field_behavior) = REQUIRED,
     (google.api.resource_reference) = {type: "jumpstarter.dev/Exporter"}
+  ];
+}
+
+message GetClientRequest {
+  string name = 1 [
+    (google.api.field_behavior) = REQUIRED,
+    (google.api.resource_reference) = {type: "jumpstarter.dev/Client"}
+  ];
+}
+
+message ListClientsRequest {
+  string parent = 1 [
+    (google.api.field_behavior) = REQUIRED,
+    (google.api.resource_reference) = {child_type: "jumpstarter.dev/Client"}
+  ];
+  int32 page_size = 2 [(google.api.field_behavior) = OPTIONAL];
+  string page_token = 3 [(google.api.field_behavior) = OPTIONAL];
+  string filter = 4 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message ListClientsResponse {
+  repeated Client clients = 1;
+  string next_page_token = 2;
+}
+
+message CreateClientRequest {
+  string parent = 1 [
+    (google.api.field_behavior) = REQUIRED,
+    (google.api.resource_reference) = {child_type: "jumpstarter.dev/Client"}
+  ];
+
+  string client_id = 2 [(google.api.field_behavior) = OPTIONAL];
+  Client client = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateClientRequest {
+  Client client = 1 [(google.api.field_behavior) = REQUIRED];
+  google.protobuf.FieldMask update_mask = 2 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message DeleteClientRequest {
+  string name = 1 [
+    (google.api.field_behavior) = REQUIRED,
+    (google.api.resource_reference) = {type: "jumpstarter.dev/Client"}
   ];
 }
 
