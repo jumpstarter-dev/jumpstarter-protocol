@@ -1,0 +1,58 @@
+// Copyright 2024 The Jumpstarter Authors
+
+syntax = "proto3";
+
+package jumpstarter.exporter.v1;
+
+service ExporterService {
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc Unregister(UnregisterRequest) returns (UnregisterResponse);
+  rpc Listen(ListenRequest) returns (ListenResponse);
+  rpc Status(StatusRequest) returns (StatusResponse);
+  rpc AuditEvent(AuditEventRequest) returns (AuditEventResponse);
+}
+
+message RegisterRequest {
+  map<string, string> labels = 1;
+  repeated DriverInstanceReport reports = 2;
+}
+
+message DriverInstanceReport {
+  string uuid = 1; // a unique id within the expoter
+  optional string parent_uuid = 2; // optional, if device has a parent device
+  map<string, string> labels = 3;
+}
+
+message RegisterResponse {}
+
+message UnregisterRequest {
+  string reason = 1;
+}
+
+message UnregisterResponse {}
+
+message ListenRequest {
+  string lease_name = 1;
+}
+
+message ListenResponse {
+  bool pending = 1;
+  optional string router_endpoint = 2;
+  optional string router_token = 3;
+}
+
+message StatusRequest {}
+
+message StatusResponse {
+  bool leased = 1;
+  optional string lease_name = 2;
+  optional string client_name = 3;
+}
+
+message AuditEventRequest {
+  string driver_instance_uuid = 1;
+  string severity = 2;
+  string message = 3;
+}
+
+message AuditEventResponse {}
