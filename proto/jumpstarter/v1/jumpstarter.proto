@@ -67,6 +67,7 @@ message DriverInstanceReport {
   string uuid = 1; // a unique id within the exporter
   optional string parent_uuid = 2; // optional, if device has a parent device
   map<string, string> labels = 3;
+  optional string description = 4; // optional custom description for CLI
 }
 
 message RegisterResponse {
